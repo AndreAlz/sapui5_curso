@@ -1,0 +1,52 @@
+{
+  "_version": "1.0",
+  "sap.app": {
+    "_version": "1.0",
+    "id": "curso.frontend",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "1.0"
+    },
+    "title": "{{CURSO SAPUI5}}"
+  },
+  "sap.ui5": {
+    "_version": "1.0",
+    "rootView": {
+      "viewName": "curso.frontend.view.App",
+      "type": "XML"
+    },
+    "dependencies": {
+      "minUI5Version": "1.82.4",
+      "libs": {
+        "sap.ui.core": {},
+        "sap.m": {},
+        "sap.ui.layout": {}
+      }
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "viewPath": "curso.frontend.view",
+        "controlId": "app",
+        "controlAggregation": "pages",
+        "transition": "show",
+        "async": true
+      },
+      "routes": [
+        {
+          "pattern": "",
+          "name": "main",
+          "target": "main"
+        }
+      ],
+      "targets": {
+        "main": {
+          "viewId": "main",
+          "viewName": "Main"
+        }
+      }
+    }
+  }
+}

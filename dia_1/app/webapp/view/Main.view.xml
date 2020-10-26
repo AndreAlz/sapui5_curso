@@ -1,0 +1,8 @@
+<mvc:View controllerName="curso.frontend.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Text text="Hola Mundo!" />
+    <Text text="Texto del archivo de configuracion {i18n>texto}" />
+
+</mvc:View>
