@@ -2,7 +2,7 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:core="sap.ui.core">
-    <Text text="Hola Mundo!" />
-    <Text text="Texto del archivo de configuracion {i18n>texto}" />
+    <Page title="CURSO SAPUI5">
 
+    </Page>
 </mvc:View>
