@@ -3,13 +3,14 @@
     xmlns="sap.m"
     xmlns:core="sap.ui.core">
     <Page title="CURSO SAPUI5">
-        <Panel headerText="Panel 1">
+        <Panel headerText="Panel 1" id="test">
             <VBox>
                 <Label text="parte1:"/>
                 <Input placeholder="input1" width="200px" liveChange="changeInputValueState"/>
                 <Label text="parte2:"/>
                 <Input placeholder="input1" width="200px" liveChange="changeInputValueState"/>
                 <Label text="combobox: "/>
+
                 <ComboBox placeholder="combobox" width="200px">
                     <items>
                         <core:Item text="Item1" key="1"/>
@@ -17,6 +18,7 @@
                         <core:Item text="Item3" key="3"/>
                     </items>
                 </ComboBox>
+
                 <Label text="radio buttons: "/>
                 <RadioButtonGroup>
                     <RadioButton text="radio1" />
