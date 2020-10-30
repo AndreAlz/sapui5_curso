@@ -1,21 +1,96 @@
 <mvc:View controllerName="curso.frontend.controller.Main"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
     xmlns:core="sap.ui.core">
-    <Page title="CURSO SAPUI5">
+    <Page id="pageMain" title="CURSO SAPUI5">
         <content>
-            <IconTabBar>
+            <mvc:XMLView viewName="curso.frontend.view.nested.DatosPersonales"/>
+            <f:Form>
+                <f:title>
+                    <core:Title text="Informacion General" />
+                </f:title>
+                <f:layout>
+                    <f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false" />
+                </f:layout>
+                <f:formContainers>
+                    <f:FormContainer title="Nombre y Direccion">
+                        <f:formElements>
+                            <f:FormElement>
+                                <f:label>
+                                    <Label text="Nombre completo" required="true"/>
+                                </f:label>
+                                <f:fields>
+                                    <Input id="in_dp_nombre_completo"/>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="Direccion y Número de Casa">
+                                <f:fields>
+                                    <Input />
+                                    <Input >
+                                        <layoutData>
+                                            <l:GridData span="XL1 L2 M2 S1" />
+                                        </layoutData>
+                                    </Input>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="Cod. Postal y Distrito">
+                                <f:fields>
+                                    <Input >
+                                        <layoutData>
+                                            <l:GridData span="XL1 L2 M2 S4" />
+                                        </layoutData>
+                                    </Input>
+                                    <Input />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="Departamento en el que vive">
+                                <f:fields>
+                                    <ComboBox selectedKey="li">
+                                        <items>
+                                            <core:Item text="Lima" key="li"/>
+                                            <core:Item text="Trujillo" key="tr"/>
+                                            <core:Item text="Cuzco" key="cu"/>
+                                        </items>
+                                    </ComboBox>
+                                </f:fields>
+                            </f:FormElement>
+                        </f:formElements>
+                    </f:FormContainer>
+                    <f:FormContainer title="Contacto">
+                        <f:formElements>
+                            <f:FormElement label="Correo">
+                                <f:fields>
+                                    <Input />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="Telefono">
+                                <f:fields>
+                                    <Input />
+                                </f:fields>
+                            </f:FormElement>
+                        </f:formElements>
+                    </f:FormContainer>
+                </f:formContainers>
+            </f:Form>
+            <!-- <IconTabBar>
                 <items>
                     <IconTabFilter text="D. Personales" icon="sap-icon://work-history">
-                        <mvc:XMLView viewName="curso.frontend.view.nested.DatosPersonales"/>
+                        
                     </IconTabFilter>
-                    <IconTabFilter text="D. Contacto" icon="sap-icon://business-card"/>
+                    <IconTabSeparator/>
+                    <IconTabFilter text="D. Contacto" icon="sap-icon://business-card">
+                        <VBox id="contenedorDinamico" />
+
+                    </IconTabFilter>
                 </items>
-            </IconTabBar>
+            </IconTabBar> -->
         </content>
         <footer>
             <Toolbar>
                 <Button text="Extraer Datos" icon="sap-icon://save" type="Success" press="onExtraerDatos"/>
+                <Button text="Crear Componente" icon="sap-icon://save" type="Success" press="onCreateComponent"/>
                 <ToolbarSpacer/>
                 <Button text="Ver Fragmento" icon="sap-icon://show" type="Critical" press="onVerFragmento"/>
             </Toolbar>

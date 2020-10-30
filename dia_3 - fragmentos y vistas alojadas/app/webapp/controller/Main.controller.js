@@ -16,6 +16,8 @@ sap.ui.define(
       },
       configurationInit: function (oEvent) {
         console.log("Main: Ejecutado despues de entrar a la vista");
+        var input = oView.byId("in_dp_nombre_completo");
+        console.log(input);
       },
       onExtraerDatos: function (oEvent) {
         //Obtenermos el controller de la vista nesteada
@@ -58,6 +60,35 @@ sap.ui.define(
       },
       onDialogClose: function () {
         oView.byId("dialogTexto").close();
+      },
+      pressGeneral: function () {
+        sap.m.MessageBox.show("Llamado desde un componente creado con JS", {
+          title: "informacion",
+        });
+      },
+      onCreateComponent: function () {
+        //Arreglo de trabajadores
+        var arrTrabajadores = [
+          {
+            dni: "70352569",
+            nombre: "Andre",
+            telefono: 945105134,
+          },
+          { dni: "70352568", nombre: "Samuel", telefono: 987654321 },
+        ];
+        var VBox = oView.byId("contenedorDinamico");
+        for (var i = 0; i < arrTrabajadores.length; i++) {
+          var trabajador = arrTrabajadores[i];
+          var button = new sap.m.Button({
+            text: trabajador.nombre,
+            press: function (oEvent) {
+              console.log(this); //Con esto podemos hacer uso de las funciones o metodos del componente
+              console.log(this.getText());
+              that.pressGeneral();
+            },
+          });
+          VBox.addItem(button);
+        }
       },
     });
   }
