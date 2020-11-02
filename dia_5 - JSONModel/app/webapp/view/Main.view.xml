@@ -1,0 +1,50 @@
+<mvc:View controllerName="curso.frontend.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Page id="pageMain" title="{i18n>titulo} - MAIN">
+        <content>
+            <HBox width="100%" height="100%" justifyContent="SpaceAround" alignItems="Center">
+                <VBox>
+                    <VBox width="300px">
+                        <Label text = "Data Binding con TEXT"/>
+                        <Text text="{model1>/textValue1}" class="sapUiSmallMargin"/>
+                    </VBox>
+                    <VBox width="300px">
+                        <Label text = "Data Binding con INPUT"/>
+                        <Input enabled= "{model1>/inputsEnabled}" value="{path: 'model1>/textValue2'}"/>
+                    </VBox>
+                    <VBox width="300px">
+                        <Label text = "Funcion para entregar un formato"/>
+                        <Input enabled= "{model1>/inputsEnabled}" value="{path: 'model1>/textValue3' ,formatter: '.formatterData'}"/>
+                    </VBox>
+                    <VBox width="300px">
+                        <Label text = "Ordenamiento, Agrupamiento"/>
+                        <ComboBox enabled= "{model1>/inputsEnabled}" items="{path: 'model1>/listaDesordenada', sorter: [{path:  'nombre', descending: true, group: true}, {path:  'key'}]}">
+                            <items>
+                                <core:Item key="{model1>key}" text="{model1>nombre}  - {model1>key}"/>
+                            </items>
+                        </ComboBox>
+                    </VBox>
+                </VBox>
+                <VBox>
+                    <VBox width="300px">
+                        <Label text = "Datos del i18n"/>
+                        <Text text="{i18n>texto1}" class="sapUiSmallMargin"/>
+                        <Text text="{i18n>texto2}" class="sapUiSmallMargin"/>
+                        <Text text="{i18n>texto2}" class="sapUiSmallMargin"/>
+                    </VBox>
+                </VBox>
+            </HBox>
+        </content>
+        <footer>
+            <Toolbar>
+                <Button text="{= ${model1>/inputsEnabled} === true ? 'Desactivar': 'Activar'}" press="onActiarPress"/>
+                <Button text="Ver Data" press="onVerData"/>
+                <Button text="{model2>/textValue}" press="onCambiarOneWay"/>
+                <Button text="Navegar" press="onNavegar"/>
+            </Toolbar>
+        </footer>
+    </Page>
+</mvc:View>
+

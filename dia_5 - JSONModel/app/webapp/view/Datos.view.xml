@@ -1,0 +1,16 @@
+<mvc:View controllerName="curso.frontend.controller.Datos"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Page id="pageMain" title="{i18n>titulo} - DATOS" showNavButton="true" navButtonPress="onRegresar">
+        <content>
+            <VBox width="100%">
+                <VBox class="sapUiSmallMargin" width="80%">
+                    <TextArea editable="false" width="100%" rows="16" value="{path: 'appmodel1>/', formatter: '.formatterJson'}" />
+                    <TextArea editable="false" width="100%" rows="4" value="{path: 'appmodel2>/', formatter: '.formatterJson'}" />
+                </VBox>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>
+
