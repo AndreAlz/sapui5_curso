@@ -41,9 +41,14 @@
           "target": "main"
         },
         {
-          "pattern": "formulario",
-          "name": "formulario",
-          "target": "formulario"
+          "pattern": "md",
+          "name": "md",
+          "target": "md"
+        },
+        {
+          "pattern": "tbp",
+          "name": "tbp",
+          "target": "tbp"
         }
       ],
       "targets": {
@@ -51,9 +56,15 @@
           "viewId": "main",
           "viewName": "Main"
         },
-        "formulario": {
-          "viewId": "formulario",
-          "viewName": "Formulario"
+        "md": {
+          "viewId": "md",
+          "viewPath": "curso.frontend.view.MD",
+          "viewName": "MD"
+        },
+        "tbp": {
+          "viewId": "tbp",
+          "viewPath": "curso.frontend.view.TBP",
+          "viewName": "TBP"
         }
       }
     }

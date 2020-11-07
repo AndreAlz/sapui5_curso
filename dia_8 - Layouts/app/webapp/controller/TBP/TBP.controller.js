@@ -5,21 +5,21 @@ sap.ui.define(
     var that = null;
     var oView = null;
     var oRouter = null;
-    return Controller.extend("curso.frontend.controller.Main", {
+    return Controller.extend("curso.frontend.controller.TBP.TBP", {
       onInit: function () {
         that = this;
         oView = this.getView();
         oRouter = sap.ui.core.UIComponent.getRouterFor(this);
         oRouter
-          .getRoute("main")
+          .getRoute("tbp")
           .attachPatternMatched(this.configurationInit, this);
       },
-      configurationInit: function (oEvent) {},
-      goMasterDetail: function (oEvent) {
-        oRouter.navTo("md");
+      configurationInit: function (oEvent) {
+        console.log("TBP");
       },
-      goToolBarPage: function (oEvent) {
-        oRouter.navTo("tbp");
+      onItemSelect: function (oEvent) {
+        var oItem = oEvent.getParameter("item");
+        this.byId("pageContainer").to(this.getView().createId(oItem.getKey()));
       },
     });
   }

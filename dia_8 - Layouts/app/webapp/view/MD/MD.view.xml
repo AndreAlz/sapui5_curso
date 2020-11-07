@@ -1,0 +1,56 @@
+<mvc:View controllerName="curso.frontend.controller.MD.MD"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:semantic="sap.m.semantic"
+    xmlns:core="sap.ui.core">
+    <SplitApp id="sa_contenedor" initialDetail="noInfo" initialMaster="generalnav">
+        <masterPages>
+            <Page id="generalnav" title="Menu Principal">
+                <List>
+                    <StandardListItem title="SubPaginas" type="Navigation" press="goMasterPage" />
+                    <StandardListItem title="Creditos" type="Active" press="onNavDetail('creditos')" />
+                </List>
+            </Page>
+            <Page id="subnav" title="Menu Secundario" showNavButton="true" navButtonPress="onNavBackMaster">
+                <List>
+                    <StandardListItem title="Pagina 1" type="Active" press="onNavDetail('page1')" />
+                    <StandardListItem title="Pagina 2" type="Active" press="onNavDetail('page2')" />
+                </List>
+            </Page>
+        </masterPages>
+        <detailPages>
+            <Page id="noInfo" title="No Information" backgroundDesign= "Solid">
+                <VBox justifyContent="Center" alignItems="Center" width="100%" height="100%">
+                    <Title text="NO INFO." />
+                </VBox>
+            </Page>
+            <Page id="page1" title="Page 1" backgroundDesign= "Solid">
+                <headerContent>
+                    <Button text="Cerrar" press="onNavDetail('noInfo')" />
+                </headerContent>
+                <VBox justifyContent="Center" alignItems="Center" width="100%" height="100%">
+                    <Title text="PAGINA 1" />
+                </VBox>
+            </Page>
+            <Page id="page2" title="Page 2" backgroundDesign= "Solid">
+                <headerContent>
+                    <Button text="Cerrar" press="onNavDetail('noInfo')" />
+                </headerContent>
+                <VBox justifyContent="Center" alignItems="Center" width="100%" height="100%">
+                    <Title text="PAGINA 2" />
+                </VBox>
+            </Page>
+            <Page id="creditos" title="Creditos" backgroundDesign= "Solid">
+                <headerContent>
+                    <Button text="Cerrar" press="onNavDetail('noInfo')" />
+                </headerContent>
+                <VBox justifyContent="Center" alignItems="Center" width="100%" height="100%">
+                    <Title text="CREDITOS" />
+                </VBox>
+            </Page>
+        </detailPages>
+
+    </SplitApp>
+</mvc:View>
+
+

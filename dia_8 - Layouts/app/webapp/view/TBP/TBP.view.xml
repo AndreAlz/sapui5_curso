@@ -1,0 +1,48 @@
+<mvc:View controllerName="curso.frontend.controller.TBP.TBP"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:tnt="sap.tnt"
+    xmlns:core="sap.ui.core">
+    <tnt:ToolPage id="toolPage">
+        <tnt:header>
+            <tnt:ToolHeader>
+                <Title text="TOOLPAGE"/>
+            </tnt:ToolHeader>
+        </tnt:header>
+        <tnt:sideContent>
+            <tnt:SideNavigation expanded="true" itemSelect="onItemSelect">
+                <tnt:NavigationList>
+                    <tnt:NavigationListItem text="Menu 1">
+                        <tnt:NavigationListItem text="Pagina 1" key="pagina1" />
+                    </tnt:NavigationListItem>
+                    <tnt:NavigationListItem text="Pagina 2" key="pagina2" />
+                </tnt:NavigationList>
+                <tnt:fixedItem>
+                    <tnt:NavigationList>
+                        <tnt:NavigationListItem text="Creditos" key="creditos"/>
+                        <tnt:NavigationListItem text="No info" key="noinfo"/>
+                    </tnt:NavigationList>
+                </tnt:fixedItem>
+            </tnt:SideNavigation>
+        </tnt:sideContent>
+        <tnt:mainContents>
+            <NavContainer id="pageContainer" initialPage="noinfo">
+                <pages>
+                    <ScrollContainer id="noinfo" horizontal="false" vertical="true" height="100%">
+                        <Title text="NO INFO."/>
+                    </ScrollContainer>
+                    <ScrollContainer id="pagina1" horizontal="false" vertical="true" height="100%">
+                        <Title text="PAGINA 1"/>
+                    </ScrollContainer>
+                    <ScrollContainer id="pagina2" horizontal="false" vertical="true" height="100%">
+                        <Title text="PAGINA 2"/>
+                    </ScrollContainer>
+                    <ScrollContainer id="creditos" horizontal="false" vertical="true" height="100%">
+                        <Title text="CREDITOS"/>
+                    </ScrollContainer>
+                </pages>
+            </NavContainer>
+        </tnt:mainContents>
+    </tnt:ToolPage>
+</mvc:View>
+
