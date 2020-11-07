@@ -1,0 +1,62 @@
+<mvc:View controllerName="curso.frontend.controller.GridTable"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:m="sap.m"
+    xmlns="sap.ui.table"
+    xmlns:core="sap.ui.core">
+    <m:Page title="Tablas SAP.UI.TABLE en SAPUI5">
+        <m:content>
+            <Table rows="{path: 'modelData>/data'}" selectionMode="Single" visibleRowCount="6" fixedColumnCount= "1" fixedRowCount= "1" fixedBottomRowCount= "1">
+                <extension>
+                    <m:OverflowToolbar>
+                        <m:Title text="Usuarios"/>
+                    </m:OverflowToolbar>
+                </extension>
+
+                <columns>
+                    <Column>
+                        <m:Label text="Usuario" />
+                        <template>
+                            <m:Text text="{modelData>usuario}" />
+                        </template>
+                    </Column>
+                    <Column>
+                        <m:Label text="Correo" />
+                        <template>
+                            <m:Text text="{modelData>correo}" />
+                        </template>
+                    </Column>
+                    <Column>
+                        <m:Label text="Fecha de Creacion" />
+                        <template>
+                            <m:Text text="{modelData>fechaCreacion}" />
+                        </template>
+                    </Column>
+                    <Column>
+                        <m:Label text="Nombre" />
+                        <template>
+                            <m:Text text="{modelData>nombre}" />
+                        </template>
+                    </Column>
+                    <Column>
+                        <m:Label text="Telefono" />
+                        <template>
+                            <m:Text text="{modelData>telefono}" />
+                        </template>
+                    </Column>
+                    <Column>
+                        <m:Label text="Acciones" />
+                        <template>
+                            <m:Button text="Press me!" press="onBtnPress"/>
+                        </template>
+                    </Column>
+                </columns>
+            </Table>
+        </m:content>
+        <m:footer>
+            <m:Toolbar>
+                <m:Button text="BACK" press="onBack"/>
+            </m:Toolbar>
+        </m:footer>
+    </m:Page>
+</mvc:View>
+

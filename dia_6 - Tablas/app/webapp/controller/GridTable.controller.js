@@ -10,13 +10,13 @@ sap.ui.define(
     var that = null;
     var oView = null;
     var oRouter = null;
-    return Controller.extend("curso.frontend.controller.Main", {
+    return Controller.extend("curso.frontend.controller.GridTable", {
       onInit: function () {
         that = this;
         oView = this.getView();
         oRouter = sap.ui.core.UIComponent.getRouterFor(this);
         oRouter
-          .getRoute("main")
+          .getRoute("gridtable")
           .attachPatternMatched(this.configurationInit, this);
       },
       configurationInit: function (oEvent) {
@@ -43,20 +43,57 @@ sap.ui.define(
               nombre: "Andre Alzamora",
               telefono: "945105134",
             },
+            {
+              usuario: "aalzamora",
+              correo: "aalzamora@csticorp.biz",
+              fechaCreacion: "15/11/2020 19:00:00pm",
+              nombre: "Andre Alzamora",
+              telefono: "945105134",
+            },
+            {
+              usuario: "aalzamora",
+              correo: "aalzamora@csticorp.biz",
+              fechaCreacion: "15/11/2020 19:00:00pm",
+              nombre: "Andre Alzamora",
+              telefono: "945105134",
+            },
+            {
+              usuario: "aalzamora",
+              correo: "aalzamora@csticorp.biz",
+              fechaCreacion: "15/11/2020 19:00:00pm",
+              nombre: "Andre Alzamora",
+              telefono: "945105134",
+            },
+            {
+              usuario: "aalzamora",
+              correo: "aalzamora@csticorp.biz",
+              fechaCreacion: "15/11/2020 19:00:00pm",
+              nombre: "Andre Alzamora",
+              telefono: "945105134",
+            },
+            {
+              usuario: "aalzamora",
+              correo: "aalzamora@csticorp.biz",
+              fechaCreacion: "15/11/2020 19:00:00pm",
+              nombre: "Andre Alzamora",
+              telefono: "945105134",
+            },
+            {
+              usuario: "aalzamora",
+              correo: "aalzamora@csticorp.biz",
+              fechaCreacion: "15/11/2020 19:00:00pm",
+              nombre: "Andre Alzamora",
+              telefono: "945105134",
+            },
           ],
         };
         var model = new JSONModel(dataModelo);
         oView.setModel(model, "modelData");
       },
-      onItemPress: function (oEvent) {
-        var row = oEvent.getSource();
-        var register = row.getBindingContext("modelData");
-        var data = register.getObject();
-        MessageBox.show(JSON.stringify(data, null, 2), {
-          title: "Data del modelo",
-        });
+      onBack: function (oEvent) {
+        oRouter.navTo("main");
       },
-      onButtonRowPress: function (oEvent) {
+      onBtnPress: function (oEvent) {
         var btn = oEvent.getSource();
         var row = btn.getParent();
         var register = row.getBindingContext("modelData");
@@ -64,9 +101,6 @@ sap.ui.define(
         MessageBox.show(JSON.stringify(data, null, 2), {
           title: "Data del modelo",
         });
-      },
-      onGo: function (oEvent) {
-        oRouter.navTo("gridtable");
       },
     });
   }

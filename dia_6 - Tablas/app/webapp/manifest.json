@@ -41,9 +41,9 @@
           "target": "main"
         },
         {
-          "pattern": "formulario",
-          "name": "formulario",
-          "target": "formulario"
+          "pattern": "gridtable",
+          "name": "gridtable",
+          "target": "gridtable"
         }
       ],
       "targets": {
@@ -51,9 +51,9 @@
           "viewId": "main",
           "viewName": "Main"
         },
-        "formulario": {
-          "viewId": "formulario",
-          "viewName": "Formulario"
+        "gridtable": {
+          "viewId": "gridtable",
+          "viewName": "GridTable"
         }
       }
     }
