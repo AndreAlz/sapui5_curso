@@ -2,41 +2,34 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:core="sap.ui.core">
-    <Page id="pageMain" title="CURSO SAPUI5">
+    <Page title="CURSO SAPUI5">
         <content>
-            <VBox id="contenedorPrincipal" width="100vw" justifyContent="Center" height="100%">
-                <HBox id="contenedorSecundario" wrap="Wrap" width="100%"  justifyContent="SpaceAround">
-                    <HBox id="contenedorTile1" wrap="Wrap">
-                        <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Manage Activity Master Data Type" subheader="Subtitle" press="press">
-                            <TileContent>
-                                <ImageContent src="test-resources/sap/m/demokit/sample/GenericTileAsLaunchTile/images/SAPLogoLargeTile_28px_height.png" />
-                            </TileContent>
-                        </GenericTile>
-                        <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Manage Activity Master Data Type" subheader="Subtitle" press="press">
-                            <TileContent>
-                                <ImageContent src="test-resources/sap/m/demokit/sample/GenericTileAsLaunchTile/images/SAPLogoLargeTile_28px_height.png" />
-                            </TileContent>
-                        </GenericTile>
-                    </HBox>
-                    <HBox id="contenedorTile2" wrap="Wrap">
-                        <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Manage Activity Master Data Type" subheader="Subtitle" press="press">
-                            <TileContent>
-                                <ImageContent src="test-resources/sap/m/demokit/sample/GenericTileAsLaunchTile/images/SAPLogoLargeTile_28px_height.png" />
-                            </TileContent>
-                        </GenericTile>
-                        <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Manage Activity Master Data Type" subheader="Subtitle" press="press">
-                            <TileContent>
-                                <ImageContent src="test-resources/sap/m/demokit/sample/GenericTileAsLaunchTile/images/SAPLogoLargeTile_28px_height.png" />
-                            </TileContent>
-                        </GenericTile>
-                    </HBox>
-                </HBox>
+            <VBox alignItems="Center" class="sapUiSmallMargin">
+                <VBox width="300px">
+                    <Label text="Nombre:" />
+                    <Input id="in_nombre" placeholder="Nombre" />
+                </VBox>
+                <VBox width="300px">
+                    <Label text="DNI:" />
+                    <Input id="in_dni" placeholder="DNI" />
+                </VBox>
+                <VBox width="300px">
+                    <Label text="Telefono:" />
+                    <Input id="in_telefono" placeholder="Telefono" />
+                </VBox>
+                <VBox width="300px">
+                    <Label text="Tipo de Solicitud:" />
+                    <ComboBox id="cb_tipo_sol" width="300px" selectedKey="1">
+                        <items>
+                            <core:Item key="1" text="General"/>
+                            <core:Item key="2" text="Traslado"/>
+                        </items>
+                    </ComboBox>
+                </VBox>
+                <Button text="Enviar" press="onEnviar"/>
             </VBox>
         </content>
         <footer>
-            <Toolbar>
-                <Button text="Formulario" press="onGoFormulario"/>
-            </Toolbar>
         </footer>
     </Page>
 </mvc:View>

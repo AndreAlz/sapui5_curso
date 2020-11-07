@@ -1,7 +1,12 @@
 sap.ui.define(
   //Arreglo de librerias
-  ["sap/ui/core/mvc/Controller", "sap/m/MessageBox", "sap/ui/core/Fragment"], //siempre presente
-  function (Controller, MessageBox, Fragment) {
+  [
+    "sap/ui/core/mvc/Controller",
+    "sap/m/MessageBox",
+    "sap/ui/core/Fragment",
+    "sap/ui/model/json/JSONModel",
+  ], //siempre presente
+  function (Controller, MessageBox, Fragment, JSONModel) {
     var that = null;
     var oView = null;
     var oRouter = null;
@@ -15,80 +20,23 @@ sap.ui.define(
           .attachPatternMatched(this.configurationInit, this);
       },
       configurationInit: function (oEvent) {},
-      onGoFormulario: function () {
-        oRouter.navTo("formulario");
+      onEnviar: function (oEvent) {
+        var nombre = oView.byId("in_nombre").getValue();
+        var dni = oView.byId("in_dni").getValue();
+        var telefono = oView.byId("in_telefono").getValue();
+        var tiposol = oView.byId("cb_tipo_sol").getSelectedKey();
+        var dataEnvio = {
+          nombre,
+          dni,
+          telefono,
+        };
+        var model = new JSONModel(dataEnvio);
+        sap.ui.getCore().setModel(model, "dataFormulario");
+        oRouter.navTo("vista", {
+          tiposol,
+          codigosol: Math.random(),
+        });
       },
-      // onExtraerDatos: function (oEvent) {
-      //   //Obtenermos el controller de la vista nesteada
-      //   var controllerNestedView = sap.ui.controller(
-      //     "curso.frontend.controller.nested.DatosPersonales"
-      //   );
-      //   //hacemos uso de su metodo getNombreCompleto para obtener el valor ingresado por el usuarios.
-      //   var nombreCompleto = controllerNestedView.getNombreCompleto();
-      //   if (nombreCompleto !== "") {
-      //     MessageBox.show(`El nombre ingresado es ${nombreCompleto}`, {
-      //       title: "Informacion.",
-      //     });
-      //   } else {
-      //     MessageBox.warning(`No se ingreso un valor`, {
-      //       title: "Alerta Campo Vacio",
-      //     });
-      //   }
-      // },
-      // onVerFragmento: function () {
-      //   if (!oView.byId("dialogTexto")) {
-      //     Fragment.load({
-      //       id: oView.getId(),
-      //       name: "curso.frontend.fragments.Mensaje",
-      //       controller: this,
-      //     }).then(function (oDialog) {
-      //       oView.addDependent(oDialog);
-      //       oDialog.open();
-      //     });
-      //   } else {
-      //     var oDiaglo = oView.byId("dialogTexto");
-      //     oDiaglo.open();
-      //   }
-      // },
-      // onDialogAccept: function () {
-      //   var input = oView.byId("dg_texto");
-      //   console.log(input.getValue());
-      //   MessageBox.show(`El texto ingresado es ${input.getValue()}`, {
-      //     title: "Informacion.",
-      //   });
-      // },
-      // onDialogClose: function () {
-      //   oView.byId("dialogTexto").close();
-      // },
-      // pressGeneral: function () {
-      //   sap.m.MessageBox.show("Llamado desde un componente creado con JS", {
-      //     title: "informacion",
-      //   });
-      // },
-      // onCreateComponent: function () {
-      //   //Arreglo de trabajadores
-      //   var arrTrabajadores = [
-      //     {
-      //       dni: "70352569",
-      //       nombre: "Andre",
-      //       telefono: 945105134,
-      //     },
-      //     { dni: "70352568", nombre: "Samuel", telefono: 987654321 },
-      //   ];
-      //   var VBox = oView.byId("contenedorDinamico");
-      //   for (var i = 0; i < arrTrabajadores.length; i++) {
-      //     var trabajador = arrTrabajadores[i];
-      //     var button = new sap.m.Button({
-      //       text: trabajador.nombre,
-      //       press: function (oEvent) {
-      //         console.log(this); //Con esto podemos hacer uso de las funciones o metodos del componente
-      //         console.log(this.getText());
-      //         that.pressGeneral();
-      //       },
-      //     });
-      //     VBox.addItem(button);
-      //   }
-      // },
     });
   }
 );

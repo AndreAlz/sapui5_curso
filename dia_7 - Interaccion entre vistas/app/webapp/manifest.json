@@ -41,9 +41,9 @@
           "target": "main"
         },
         {
-          "pattern": "formulario",
-          "name": "formulario",
-          "target": "formulario"
+          "pattern": "vista/{tiposol}/:codigosol:",
+          "name": "vista",
+          "target": "vista"
         }
       ],
       "targets": {
@@ -51,9 +51,9 @@
           "viewId": "main",
           "viewName": "Main"
         },
-        "formulario": {
-          "viewId": "formulario",
-          "viewName": "Formulario"
+        "vista": {
+          "viewId": "vista",
+          "viewName": "Vista"
         }
       }
     }
