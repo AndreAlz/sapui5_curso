@@ -7,6 +7,22 @@
             <items>
                 <IconTabFilter text="Productos" icon="sap-icon://retail-store">
                     <content>
+                        <Panel expandable="false">
+                            <infoToolbar>
+                                <Toolbar>
+                                    <Title text="Lista de productos"/>
+                                </Toolbar>
+                            </infoToolbar>
+                            <headerToolbar>
+                                <Toolbar>
+                                    <SearchField width="250px" placeholder ="Buscar productos..." change="onSearchProducto"/>
+                                </Toolbar>
+                            </headerToolbar>
+                            <content>
+                                <HBox id="h_contenedorProductos" width="100%" wrap="Wrap">
+                                </HBox>
+                            </content>
+                        </Panel>
                     </content>
                 </IconTabFilter>
                 <IconTabFilter text="Carrito" icon="sap-icon://product"/>
