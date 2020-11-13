@@ -1,0 +1,18 @@
+<mvc:View controllerName="curso.frontend.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Page title="MARKET PLACE">
+        <IconTabBar expandable="false">
+            <items>
+                <IconTabFilter text="Productos" icon="sap-icon://retail-store">
+                    <content>
+                    </content>
+                </IconTabFilter>
+                <IconTabFilter text="Carrito" icon="sap-icon://product"/>
+                <IconTabFilter text="Dashboard" icon="sap-icon://bbyd-dashboard"/>
+                <IconTabFilter text="Mantenimiento" icon="sap-icon://retail-store"/>
+            </items>
+        </IconTabBar>
+    </Page>
+</mvc:View>
