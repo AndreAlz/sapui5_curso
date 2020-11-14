@@ -49,7 +49,6 @@
                 </VBox>
             </Page>
         </detailPages>
-
     </SplitApp>
 </mvc:View>
 

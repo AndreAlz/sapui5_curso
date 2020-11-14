@@ -1,0 +1,43 @@
+<mvc:View controllerName="curso.frontend.controller.nested.Carrito"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <Panel headerText="Lista de Productos Pedidos">
+        <Table id="tb_prod_pendientes" items="{path: 'modelCarrito>/data'}">
+            <headerToolbar>
+                <Toolbar>
+                    <SearchField placeholder="Buscar Pedido" width ="250px" change="onBuscarProdPendiente" />
+                </Toolbar>
+            </headerToolbar>
+            <columns>
+                <Column>
+                    <Text text="Producto"/>
+                </Column>
+                <Column>
+                    <Text text="Marca"/>
+                </Column>
+                <Column>
+                    <Text text="Precio"/>
+                </Column>
+                <Column>
+                    <Text text="Fecha de compra"/>
+                </Column>
+                <Column>
+                    <Text text="Estado"/>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{modelCarrito>titulo}" />
+                        <Text text="{modelCarrito>marca}" />
+                        <Text text="{modelCarrito>precio}" />
+                        <Text text="{modelCarrito>fechaRegistro}" />
+                        <Text text="{modelCarrito>estado}" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Panel>
+</mvc:View>

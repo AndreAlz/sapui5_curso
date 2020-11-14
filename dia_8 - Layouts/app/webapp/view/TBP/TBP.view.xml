@@ -12,9 +12,11 @@
         <tnt:sideContent>
             <tnt:SideNavigation expanded="true" itemSelect="onItemSelect">
                 <tnt:NavigationList>
+                    <!--  -->
                     <tnt:NavigationListItem text="Menu 1">
                         <tnt:NavigationListItem text="Pagina 1" key="pagina1" />
                     </tnt:NavigationListItem>
+                    <!--  -->
                     <tnt:NavigationListItem text="Pagina 2" key="pagina2" />
                 </tnt:NavigationList>
                 <tnt:fixedItem>

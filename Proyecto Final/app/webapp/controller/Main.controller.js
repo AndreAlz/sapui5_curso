@@ -1,6 +1,12 @@
 sap.ui.define(
-  ["sap/ui/core/mvc/Controller", "sap/ui/model/json/JSONModel"],
-  function (Controller, JSONModel) {
+  [
+    "sap/ui/core/mvc/Controller",
+    "sap/ui/model/json/JSONModel",
+    "sap/ui/core/Fragment",
+    "sap/m/MessageBox",
+    "sap/ui/model/Filter",
+  ],
+  function (Controller, JSONModel, Fragment, MessageBox, Filter) {
     var that = null;
     var oView = null;
     return Controller.extend("curso.frontend.controller.Main", {
@@ -27,7 +33,7 @@ sap.ui.define(
             titulo: "Laptop",
             precio: "S/.3000.00",
             marca: "MAC",
-            stock: 0,
+            stock: 10,
             id: "prod_2",
           },
           {
@@ -38,7 +44,7 @@ sap.ui.define(
             precio: "S/.1500.00",
             marca: "HP",
             stock: 150,
-            id: "prod_4",
+            id: "prod_3",
           },
         ];
 
@@ -65,6 +71,7 @@ sap.ui.define(
             header: `${item.titulo} + ${item.marca}`,
             subheader: item.precio,
           });
+
           //Crear TileContent (Default)
           var tileContent = new sap.m.TileContent();
           //Crear ImageContent
@@ -80,7 +87,21 @@ sap.ui.define(
             text: item.stock !== 0 ? "Comprar" : "Agotado",
             type: item.stock !== 0 ? "Accept" : "Critical",
             enabled: item.stock !== 0 ? true : false,
+            press: function (oEvent) {
+              that.onComprar(oEvent);
+            },
           });
+          //USANDO ATTACHEVENT
+          // boton.attachEvent("press", function () {
+          //   console.log("Press");
+          // });
+
+          //Agregar Info producto Model
+          var cData = new sap.ui.core.CustomData({
+            key: "prod",
+            value: item,
+          });
+          boton.addCustomData(cData);
           vboxContenedor.addItem(genericTile);
           vboxContenedor.addItem(boton);
           contenedor.addItem(vboxContenedor);
@@ -112,6 +133,56 @@ sap.ui.define(
         this.rederizarProducto(contenedorProductos, filteredData, () => {
           oView.byId("h_contenedorProductos").setBusy(false);
         });
+      },
+      onComprar: function (oEvent) {
+        //Obtenemos el btn y sus custom data para obtener el obj
+        var btn = oEvent.getSource();
+        var cData = btn.getCustomData();
+        var prod = cData[0].getValue();
+        //hacer el obj disponible para toda la app
+        var selectedProdModel = new JSONModel(prod);
+        // Llamar al fragmento
+        if (!oView.byId("dg_confirmacionCompra")) {
+          Fragment.load({
+            id: oView.getId(),
+            name: "curso.frontend.fragments.Confirmacion",
+            controller: this,
+          }).then(function (oDialog) {
+            oView.addDependent(oDialog);
+            oDialog.setModel(selectedProdModel, "selectedProdModel");
+            oDialog.open();
+          });
+        } else {
+          var oDialog = oView.byId("dg_confirmacionCompra");
+          oDialog.setModel(selectedProdModel, "selectedProdModel");
+          oDialog.open();
+        }
+      },
+      onCerrarDialog: function (oEvent) {
+        oView.byId("dg_confirmacionCompra").close();
+      },
+      onConfirmar: function (oEvent) {
+        var dialog = oView.byId("dg_confirmacionCompra");
+        var model = dialog.getModel("selectedProdModel");
+        var prod = model.getData();
+        console.log(prod);
+        prod.fechaRegistro = new Date();
+        prod.estado = "Pendiente";
+        var currentModel = this.getOwnerComponent().getModel("modelCarrito");
+        console.log(currentModel);
+        if (currentModel === undefined) {
+          var model = new JSONModel({
+            data: [prod],
+          });
+          this.getOwnerComponent().setModel(model, "modelCarrito");
+        } else {
+          //Agregar el prod al model existente
+          var arrPedidos = currentModel.getData().data;
+          console.log(arrPedidos);
+          arrPedidos.push(prod);
+          currentModel.setProperty("/data", arrPedidos);
+        }
+        dialog.close();
       },
     });
   }

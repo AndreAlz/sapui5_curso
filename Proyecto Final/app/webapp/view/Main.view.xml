@@ -25,7 +25,9 @@
                         </Panel>
                     </content>
                 </IconTabFilter>
-                <IconTabFilter text="Carrito" icon="sap-icon://product"/>
+                <IconTabFilter text="Carrito" icon="sap-icon://product">
+                    <mvc:XMLView viewName="curso.frontend.view.nested.Carrito"/>
+                </IconTabFilter>
                 <IconTabFilter text="Dashboard" icon="sap-icon://bbyd-dashboard"/>
                 <IconTabFilter text="Mantenimiento" icon="sap-icon://retail-store"/>
             </items>

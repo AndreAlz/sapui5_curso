@@ -19,7 +19,7 @@ sap.ui.define(
       },
       onItemSelect: function (oEvent) {
         var oItem = oEvent.getParameter("item");
-        this.byId("pageContainer").to(this.getView().createId(oItem.getKey()));
+        oView.byId("pageContainer").to(oView.createId(oItem.getKey()));
       },
     });
   }

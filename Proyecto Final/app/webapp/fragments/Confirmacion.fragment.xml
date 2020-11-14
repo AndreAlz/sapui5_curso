@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Dialog id="dg_confirmacionCompra" title="Confirma tu Compra" contentWidth="auto">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <Text text="Esta seguro que desea comprar el producto {selectedProdModel>/titulo} de marca {selectedProdModel>/marca} con precio {selectedProdModel>precio}" />
+            </VBox>
+        </content>
+        <buttons>
+            <Button text="Aceptar" press="onConfirmar" />
+            <Button text="Cerrar" press="onCerrarDialog" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>
