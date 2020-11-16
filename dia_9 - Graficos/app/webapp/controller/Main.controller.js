@@ -1,7 +1,12 @@
 sap.ui.define(
   //Arreglo de librerias
-  ["sap/ui/core/mvc/Controller", "sap/m/MessageBox", "sap/ui/core/Fragment"], //siempre presente
-  function (Controller, MessageBox, Fragment) {
+  [
+    "sap/ui/core/mvc/Controller",
+    "sap/m/MessageBox",
+    "sap/ui/core/Fragment",
+    "sap/ui/model/json/JSONModel",
+  ], //siempre presente
+  function (Controller, MessageBox, Fragment, JSONModel) {
     var that = null;
     var oView = null;
     var oRouter = null;
@@ -14,81 +19,86 @@ sap.ui.define(
           .getRoute("main")
           .attachPatternMatched(this.configurationInit, this);
       },
-      configurationInit: function (oEvent) {},
-      onGoFormulario: function () {
-        oRouter.navTo("formulario");
+      configurationInit: function (oEvent) {
+        console.log(this);
+        var vfTotaFecha = oView.byId("vf_tota_fecha");
+        var vfCantRegGw = oView.byId("vf_cant_reg_gw");
+        var dummyGrafData = {
+          totalFecha: {
+            data: [
+              {
+                fecha: "11-10-2020",
+                total_reg: 10,
+              },
+              {
+                fecha: "12-10-2020",
+                total_reg: 5,
+              },
+              {
+                fecha: "13-10-2020",
+                total_reg: 2,
+              },
+              {
+                fecha: "14-10-2020",
+                total_reg: 5,
+              },
+              {
+                fecha: "15-10-2020",
+                total_reg: 15,
+              },
+            ],
+          },
+          totalGw: {
+            data: [
+              {
+                gw: "Zona X",
+                total_reg: 25,
+              },
+              {
+                gw: "Zona Y",
+                total_reg: 15,
+              },
+              {
+                gw: "Zona Z",
+                total_reg: 10,
+              },
+            ],
+          },
+        };
+        var model = new JSONModel(dummyGrafData);
+        oView.setModel(model, "dummyData");
+        vfTotaFecha.setVizProperties({
+          title: {
+            text: "Cant. Registros por Fecha",
+          },
+          plotArea: {
+            colorPalette: ["#ff2e17"],
+            dataLabel: {
+              visible: true,
+            },
+          },
+          valueAxis: {
+            title: {
+              text: "Total de Registro",
+            },
+          },
+          categoryAxis: {
+            title: {
+              text: "Fecha de Registro",
+            },
+          },
+        });
+        vfCantRegGw.setVizProperties({
+          title: {
+            text: "Cant. Registros por Zona",
+          },
+          plotArea: {
+            dataLabel: {
+              visible: true,
+            },
+          },
+        });
       },
-      // onExtraerDatos: function (oEvent) {
-      //   //Obtenermos el controller de la vista nesteada
-      //   var controllerNestedView = sap.ui.controller(
-      //     "curso.frontend.controller.nested.DatosPersonales"
-      //   );
-      //   //hacemos uso de su metodo getNombreCompleto para obtener el valor ingresado por el usuarios.
-      //   var nombreCompleto = controllerNestedView.getNombreCompleto();
-      //   if (nombreCompleto !== "") {
-      //     MessageBox.show(`El nombre ingresado es ${nombreCompleto}`, {
-      //       title: "Informacion.",
-      //     });
-      //   } else {
-      //     MessageBox.warning(`No se ingreso un valor`, {
-      //       title: "Alerta Campo Vacio",
-      //     });
-      //   }
-      // },
-      // onVerFragmento: function () {
-      //   if (!oView.byId("dialogTexto")) {
-      //     Fragment.load({
-      //       id: oView.getId(),
-      //       name: "curso.frontend.fragments.Mensaje",
-      //       controller: this,
-      //     }).then(function (oDialog) {
-      //       oView.addDependent(oDialog);
-      //       oDialog.open();
-      //     });
-      //   } else {
-      //     var oDiaglo = oView.byId("dialogTexto");
-      //     oDiaglo.open();
-      //   }
-      // },
-      // onDialogAccept: function () {
-      //   var input = oView.byId("dg_texto");
-      //   console.log(input.getValue());
-      //   MessageBox.show(`El texto ingresado es ${input.getValue()}`, {
-      //     title: "Informacion.",
-      //   });
-      // },
-      // onDialogClose: function () {
-      //   oView.byId("dialogTexto").close();
-      // },
-      // pressGeneral: function () {
-      //   sap.m.MessageBox.show("Llamado desde un componente creado con JS", {
-      //     title: "informacion",
-      //   });
-      // },
-      // onCreateComponent: function () {
-      //   //Arreglo de trabajadores
-      //   var arrTrabajadores = [
-      //     {
-      //       dni: "70352569",
-      //       nombre: "Andre",
-      //       telefono: 945105134,
-      //     },
-      //     { dni: "70352568", nombre: "Samuel", telefono: 987654321 },
-      //   ];
-      //   var VBox = oView.byId("contenedorDinamico");
-      //   for (var i = 0; i < arrTrabajadores.length; i++) {
-      //     var trabajador = arrTrabajadores[i];
-      //     var button = new sap.m.Button({
-      //       text: trabajador.nombre,
-      //       press: function (oEvent) {
-      //         console.log(this); //Con esto podemos hacer uso de las funciones o metodos del componente
-      //         console.log(this.getText());
-      //         that.pressGeneral();
-      //       },
-      //     });
-      //     VBox.addItem(button);
-      //   }
-      // },
     });
   }
 );

@@ -1,43 +1,53 @@
 <mvc:View controllerName="curso.frontend.controller.Main"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-    xmlns:core="sap.ui.core">
+    xmlns:core="sap.ui.core"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:viz="sap.viz.ui5.controls">
     <Page id="pageMain" title="CURSO SAPUI5">
-        <content>
-            <VBox id="contenedorPrincipal" width="100vw" justifyContent="Center" height="100%">
-                <HBox id="contenedorSecundario" wrap="Wrap" width="100%"  justifyContent="SpaceAround">
-                    <HBox id="contenedorTile1" wrap="Wrap">
-                        <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Manage Activity Master Data Type" subheader="Subtitle" press="press">
-                            <TileContent>
-                                <ImageContent src="test-resources/sap/m/demokit/sample/GenericTileAsLaunchTile/images/SAPLogoLargeTile_28px_height.png" />
-                            </TileContent>
-                        </GenericTile>
-                        <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Manage Activity Master Data Type" subheader="Subtitle" press="press">
-                            <TileContent>
-                                <ImageContent src="test-resources/sap/m/demokit/sample/GenericTileAsLaunchTile/images/SAPLogoLargeTile_28px_height.png" />
-                            </TileContent>
-                        </GenericTile>
-                    </HBox>
-                    <HBox id="contenedorTile2" wrap="Wrap">
-                        <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Manage Activity Master Data Type" subheader="Subtitle" press="press">
-                            <TileContent>
-                                <ImageContent src="test-resources/sap/m/demokit/sample/GenericTileAsLaunchTile/images/SAPLogoLargeTile_28px_height.png" />
-                            </TileContent>
-                        </GenericTile>
-                        <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Manage Activity Master Data Type" subheader="Subtitle" press="press">
-                            <TileContent>
-                                <ImageContent src="test-resources/sap/m/demokit/sample/GenericTileAsLaunchTile/images/SAPLogoLargeTile_28px_height.png" />
-                            </TileContent>
-                        </GenericTile>
-                    </HBox>
-                </HBox>
-            </VBox>
-        </content>
-        <footer>
-            <Toolbar>
-                <Button text="Formulario" press="onGoFormulario"/>
-            </Toolbar>
-        </footer>
+        <HBox width="100%" class="sapUiSmallMargin">
+            <Link href="https://sapui5.hana.ondemand.com/docs/vizdocs/index.html" text="VIZ FRAME DOCS" />
+        </HBox>
+
+        <Panel headerText="Graficos Historicos" width="100vw">
+            <HBox>
+                <viz:VizFrame id="vf_tota_fecha" height='400px' width="45vw" vizType='line'>
+                    <viz:dataset>
+                        <viz.data:FlattenedDataset id="vf_total_fecha_data" data="{path: 'dummyData>/totalFecha/data'}">
+                            <viz.data:dimensions>
+                                <viz.data:DimensionDefinition name="Fecha" value="{path: 'dummyData>fecha'}" />
+                            </viz.data:dimensions>
+                            <viz.data:measures>
+                                <viz.data:MeasureDefinition name="Registros" value="{dummyData>total_reg}" />
+                            </viz.data:measures>
+                        </viz.data:FlattenedDataset>
+                    </viz:dataset>
+
+                    <viz:feeds>
+                        <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Registros" />
+                        <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Fecha" />
+                    </viz:feeds>
+                </viz:VizFrame>
+                <viz:VizFrame id="vf_cant_reg_gw" height='400px' width="45vw" vizType='donut'>
+                    <viz:dataset>
+                        <viz.data:FlattenedDataset id="vf_cant_reg_gw_data" data="{path: 'dummyData>/totalGw/data'}">
+                            <viz.data:dimensions>
+                                <viz.data:DimensionDefinition name="Gateway" value="{path: 'dummyData>gw'}" />
+                            </viz.data:dimensions>
+                            <viz.data:measures>
+                                <viz.data:MeasureDefinition name="Registros" value="{dummyData>total_reg}" />
+                            </viz.data:measures>
+                        </viz.data:FlattenedDataset>
+                    </viz:dataset>
+
+                    <viz:feeds>
+                        <viz.feeds:FeedItem uid="size" type="Measure" values="Registros" />
+                        <viz.feeds:FeedItem uid="color" type="Dimension" values="Gateway" />
+                    </viz:feeds>
+                </viz:VizFrame>
+            </HBox>
+        </Panel>
     </Page>
 </mvc:View>
 
