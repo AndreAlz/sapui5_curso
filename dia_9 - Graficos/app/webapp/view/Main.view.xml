@@ -12,7 +12,7 @@
 
         <Panel headerText="Graficos Historicos" width="100vw">
             <HBox>
-                <viz:VizFrame id="vf_tota_fecha" height='400px' width="45vw" vizType='line'>
+                <viz:VizFrame id="vf_tota_fecha" height='400px' width="45vw" vizType='line' selectData="onSelectData" deselectData="onDeselect" renderComplete="onRenderComplete">
                     <viz:dataset>
                         <viz.data:FlattenedDataset id="vf_total_fecha_data" data="{path: 'dummyData>/totalFecha/data'}">
                             <viz.data:dimensions>
@@ -29,6 +29,8 @@
                         <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Fecha" />
                     </viz:feeds>
                 </viz:VizFrame>
+
+
                 <viz:VizFrame id="vf_cant_reg_gw" height='400px' width="45vw" vizType='donut'>
                     <viz:dataset>
                         <viz.data:FlattenedDataset id="vf_cant_reg_gw_data" data="{path: 'dummyData>/totalGw/data'}">

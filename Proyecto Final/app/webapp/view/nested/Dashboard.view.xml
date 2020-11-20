@@ -1,0 +1,45 @@
+<mvc:View controllerName="curso.frontend.controller.nested.Dashboard"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:core="sap.ui.core">
+    <Panel headerText="Graficos Historicos">
+        <HBox>
+            <viz:VizFrame id="viz_column" vizType="column" height="400px" width="45vw">
+                <viz:dataset>
+                    <viz.data:FlattenedDataset data="{path: 'columnData>/data'}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name="Producto" value="{columnData>producto}"/>
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="Pedidos" value="{columnData>cant_ped}"/>
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+                <viz:feeds>
+                    <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Producto" />
+                    <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Pedidos" />
+                </viz:feeds>
+            </viz:VizFrame>
+
+            <viz:VizFrame id="viz_donut" vizType="donut" height="400px" width="45vw">
+                <viz:dataset>
+                    <viz.data:FlattenedDataset data="{path: 'mProductos>/'}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name="Producto" value="{mProductos>titulo}"/>
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="Stock" value="{mProductos>stock}"/>
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+                <viz:feeds>
+                    <viz.feeds:FeedItem uid="color" type="Dimension" values="Producto" />
+                    <viz.feeds:FeedItem uid="size" type="Measure" values="Stock" />
+                </viz:feeds>
+            </viz:VizFrame>
+        </HBox>
+    </Panel>
+</mvc:View>

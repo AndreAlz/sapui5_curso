@@ -7,28 +7,15 @@
             <items>
                 <IconTabFilter text="Productos" icon="sap-icon://retail-store">
                     <content>
-                        <Panel expandable="false">
-                            <infoToolbar>
-                                <Toolbar>
-                                    <Title text="Lista de productos"/>
-                                </Toolbar>
-                            </infoToolbar>
-                            <headerToolbar>
-                                <Toolbar>
-                                    <SearchField width="250px" placeholder ="Buscar productos..." change="onSearchProducto"/>
-                                </Toolbar>
-                            </headerToolbar>
-                            <content>
-                                <HBox id="h_contenedorProductos" width="100%" wrap="Wrap">
-                                </HBox>
-                            </content>
-                        </Panel>
+                        <mvc:XMLView viewName="curso.frontend.view.nested.Productos"/>
                     </content>
                 </IconTabFilter>
                 <IconTabFilter text="Carrito" icon="sap-icon://product">
                     <mvc:XMLView viewName="curso.frontend.view.nested.Carrito"/>
                 </IconTabFilter>
-                <IconTabFilter text="Dashboard" icon="sap-icon://bbyd-dashboard"/>
+                <IconTabFilter text="Dashboard" icon="sap-icon://bbyd-dashboard">
+                    <mvc:XMLView viewName="curso.frontend.view.nested.Dashboard"/>
+                </IconTabFilter>
                 <IconTabFilter text="Mantenimiento" icon="sap-icon://retail-store"/>
             </items>
         </IconTabBar>

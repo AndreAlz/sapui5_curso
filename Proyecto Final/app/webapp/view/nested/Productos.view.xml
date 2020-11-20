@@ -1,0 +1,22 @@
+<mvc:View controllerName="curso.frontend.controller.nested.Productos"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <Panel expandable="false">
+        <infoToolbar>
+            <Toolbar>
+                <Title text="Lista de productos"/>
+            </Toolbar>
+        </infoToolbar>
+        <headerToolbar>
+            <Toolbar>
+                <SearchField width="250px" placeholder ="Buscar productos..." change="onSearchProducto"/>
+            </Toolbar>
+        </headerToolbar>
+        <content>
+            <HBox id="h_contenedorProductos" width="100%" wrap="Wrap">
+            </HBox>
+        </content>
+    </Panel>
+</mvc:View>

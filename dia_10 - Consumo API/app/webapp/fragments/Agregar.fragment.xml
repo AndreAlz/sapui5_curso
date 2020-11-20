@@ -1,0 +1,34 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Dialog id="dg_agregar" title="Fragmento - Ingreso Usuario">
+        <content>
+            <VBox width="100%">
+                <VBox width="80%">
+                    <Label class="sapUiSmallMargin" text="NOMBRE" />
+                    <Input class="sapUiSmallMargin" id="dg_nombre" placeholder="Texto!" />
+                </VBox>
+                <VBox width="80%">
+                    <Label class="sapUiSmallMargin" text="NACIONALIDAD" />
+                    <Input class="sapUiSmallMargin" id="dg_nacionalidad" placeholder="Texto!" />
+                </VBox>
+                <VBox width="80%">
+                    <Label class="sapUiSmallMargin" text="EDAD" />
+                    <Input class="sapUiSmallMargin" type="Number" id="dg_edad" placeholder="Numero!" />
+                </VBox>
+                <VBox width="80%">
+                    <Label class="sapUiSmallMargin" text="TELEFONO" />
+                    <Input class="sapUiSmallMargin" id="dg_telefono" placeholder="Texto!" />
+                </VBox>
+                <VBox width="80%">
+                    <Label class="sapUiSmallMargin" text="CORREO" />
+                    <Input class="sapUiSmallMargin" id="dg_correo" placeholder="Texto!" />
+                </VBox>
+            </VBox>
+        </content>
+        <buttons>
+            <Button text="Guardar" type="Success" press="onGuardar"/>
+            <Button text="Editar" type="Success" press="onEditarRegister"/>
+            <Button text="Cerrar" type="Reject" press="onDialogClose"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

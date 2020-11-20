@@ -68,11 +68,25 @@ sap.ui.define(
         var model = new JSONModel(dummyGrafData);
         oView.setModel(model, "dummyData");
         vfTotaFecha.setVizProperties({
+          legend: {
+            title: {
+              text: "Legenda",
+              visible: true,
+            },
+          },
           title: {
             text: "Cant. Registros por Fecha",
           },
+          interaction: {
+            enableDeselectAll: true,
+          },
           plotArea: {
-            colorPalette: ["#ff2e17"],
+            dataPoint: {
+              stroke: {
+                color: "#ff2ef7",
+              },
+            },
+            // colorPalette: ["#ff2ef7"],
             dataLabel: {
               visible: true,
             },
@@ -83,8 +97,10 @@ sap.ui.define(
             },
           },
           categoryAxis: {
+            color: "#3eff25",
             title: {
               text: "Fecha de Registro",
+              visible: true,
             },
           },
         });
@@ -98,6 +114,16 @@ sap.ui.define(
             },
           },
         });
+      },
+      onSelectData: function (oEvent) {
+        console.log(oEvent.getParameter("data"));
+      },
+      onDeselect: function (oEvent) {
+        console.log("DESELECT");
+        console.log(oEvent.getParameter("data"));
+      },
+      onRenderComplete: function (oEvent) {
+        console.log("onRenderComplete");
       },
     });
   }
