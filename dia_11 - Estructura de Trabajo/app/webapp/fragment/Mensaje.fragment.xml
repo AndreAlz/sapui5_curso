@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m"
     xmlns:core="sap.ui.core">
-    <Dialog id="dialogTexto" title="Fragmento - Ingreso Mensaje" width="100%">
+    <Dialog id="dialogTexto" title="Fragmento">
         <content>
             <VBox width="100%">
                 <VBox class="sapUiSmallMargin" width="80%">
@@ -9,7 +9,6 @@
             </VBox>
         </content>
         <buttons>
-            <Button text="Acceptar" type="Success" press="onDialogAccept"/>
             <Button text="Cerrar" type="Reject" press="onDialogClose"/>
         </buttons>
     </Dialog>

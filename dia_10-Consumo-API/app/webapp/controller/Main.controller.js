@@ -10,6 +10,8 @@ sap.ui.define(
     var oView = null;
     var oRouter = null;
     var URL_SERVICE = "https://cursosapui.cfapps.us10.hana.ondemand.com";
+    var URL_NW = "https://services.odata.org/Northwind/Northwind.svc";
+    var sufij = "$format=json";
     var tipo = "ajax";
     return Controller.extend("curso.frontend.controller.Main", {
       onInit: function () {
@@ -31,20 +33,26 @@ sap.ui.define(
             .then((res) => {
               console.log("PROMESA DE DATA");
               console.log(res);
-              return res.json();
+              if (res.ok) {
+                return res.json();
+              } else {
+                throw Error;
+              }
             })
             .then((data) => {
               console.log("data Obtenida");
               console.log(data);
               sap.m.MessageToast.show(data.mensaje);
               oView.setModel(new JSONModel(data), "dataModel");
+            })
+            .catch((e) => {
+              console.log("Error");
             });
         } else {
-          var dataRequest = jQuery.ajax({
+          jQuery.ajax({
             type: "GET",
             contentType: "application/json",
             url: `${URL_SERVICE}/getRequest`,
-            dataType: "json",
             beforeSend: function () {
               console.log("Antes de ejecutar");
             },
@@ -56,6 +64,9 @@ sap.ui.define(
             },
             complete: function () {
               console.log("Al terminar");
+            },
+            error: function (e) {
+              console.log("Error");
             },
           });
         }
@@ -92,7 +103,6 @@ sap.ui.define(
           oDiaglo.open();
         }
       },
-
       onGuardar: function () {
         var objPost = {
           nombre: oView.byId("dg_nombre").getValue(),
@@ -118,6 +128,7 @@ sap.ui.define(
               console.log("data Obtenida");
               console.log(data);
               sap.m.MessageToast.show(data.mensaje);
+              return "Mensaje Exceptuado!";
             });
         } else {
           jQuery.ajax({
@@ -206,7 +217,7 @@ sap.ui.define(
           oDiaglo.open();
         }
       },
-      onEditarRegister: function (oEvent) {
+      onEditarRegister: async function (oEvent) {
         var objToUpdate = {
           nombre: oView.byId("dg_nombre").getValue(),
           edad: oView.byId("dg_edad").getValue(),
@@ -216,23 +227,34 @@ sap.ui.define(
           id: that.objUpdate.id,
         };
         if (tipo === "fetch") {
-          fetch(`${URL_SERVICE}/putRequest`, {
+          var promise = await fetch(`${URL_SERVICE}/putRequest`, {
             method: "PUT",
             headers: new Headers({
               "Content-Type": "application/json",
             }),
             body: JSON.stringify(objToUpdate),
-          })
-            .then((res) => {
-              console.log("PROMESA DE DATA");
-              console.log(res);
-              return res.json();
-            })
-            .then((data) => {
-              console.log("data Obtenida");
-              console.log(data);
-              sap.m.MessageToast.show(data.mensaje);
-            });
+          });
+          var response = await promise.json();
+          console.log("data Obtenida");
+          console.log(response);
+          sap.m.MessageToast.show(response.mensaje);
+          // fetch(`${URL_SERVICE}/putRequest`, {
+          //   method: "PUT",
+          //   headers: new Headers({
+          //     "Content-Type": "application/json",
+          //   }),
+          //   body: JSON.stringify(objToUpdate),
+          // })
+          //   .then((res) => {
+          //     console.log("PROMESA DE DATA");
+          //     console.log(res);
+          //     return res.json();
+          //   })
+          //   .then((data) => {
+          //     console.log("data Obtenida");
+          //     console.log(data);
+          //     sap.m.MessageToast.show(data.mensaje);
+          //   });
         } else {
           jQuery.ajax({
             type: "PUT",

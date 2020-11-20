@@ -39,21 +39,12 @@
           "pattern": "",
           "name": "main",
           "target": "main"
-        },
-        {
-          "pattern": "formulario",
-          "name": "formulario",
-          "target": "formulario"
         }
       ],
       "targets": {
         "main": {
           "viewId": "main",
           "viewName": "Main"
-        },
-        "formulario": {
-          "viewId": "formulario",
-          "viewName": "Formulario"
         }
       }
     }
