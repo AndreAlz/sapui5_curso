@@ -1,16 +1,17 @@
 sap.ui.define(
   [
-    "sap/ui/core/mvc/Controller",
+    "../../framework/BaseController",
     "sap/ui/model/json/JSONModel",
     "sap/ui/model/Filter",
   ],
-  function (Controller, JSONModel, Filter) {
+  function (BaseController, JSONModel, Filter) {
     var that = null;
     var oView = null;
-    return Controller.extend("curso.frontend.controller.nested.Carrito", {
+    return BaseController.extend("curso.frontend.controller.nested.Carrito", {
       onInit: function () {
         that = this;
         oView = this.getView();
+        this.initBase("carrito", this);
       },
       onBuscarProdPendiente: function (oEvent) {
         var sf = oEvent.getSource();

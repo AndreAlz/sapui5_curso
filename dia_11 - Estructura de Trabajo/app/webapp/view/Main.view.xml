@@ -3,6 +3,10 @@
     xmlns="sap.m"
     xmlns:core="sap.ui.core">
     <Page id="pageMain" title="CURSO SAPUI5">
+        <Button text ="text" press="onPress"/>
+
+
+        <Input value="{path: 'mTest>/texto', formatter: '.fmt.dateTimeFormatter'}" width="500px"/>
     </Page>
 </mvc:View>
 

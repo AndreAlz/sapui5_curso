@@ -1,17 +1,17 @@
 sap.ui.define(
   [
-    "sap/ui/core/mvc/Controller",
+    "../../framework/BaseController",
     "sap/ui/model/json/JSONModel",
     "sap/ui/model/Filter",
   ],
-  function (Controller, JSONModel, Filter) {
+  function (BaseController, JSONModel, Filter) {
     var that = null;
     var oView = null;
-    return Controller.extend("curso.frontend.controller.nested.Dashboard", {
+    return BaseController.extend("curso.frontend.controller.nested.Dashboard", {
       onInit: function () {
         that = this;
         oView = this.getView();
-
+        this.initBase("dashboard", this);
         var modelPedidos = this.getOwnerComponent().getModel("modelCarrito");
         if (modelPedidos !== undefined) {
           var data = modelPedidos.getData();

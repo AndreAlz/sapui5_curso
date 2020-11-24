@@ -1,21 +1,21 @@
 sap.ui.define(
   [
-    "sap/ui/core/mvc/Controller",
+    "../../framework/BaseController",
     "sap/ui/model/json/JSONModel",
     "sap/ui/core/Fragment",
     "sap/m/MessageBox",
     "sap/ui/model/Filter",
   ],
-  function (Controller, JSONModel, Fragment, MessageBox, Filter) {
+  function (BaseController, JSONModel, Fragment, MessageBox, Filter) {
     var that = null;
     var oView = null;
-    return Controller.extend("curso.frontend.controller.nested.Productos", {
+    return BaseController.extend("curso.frontend.controller.nested.Productos", {
       onInit: function () {
         that = this;
         oView = this.getView();
-
+        this.initBase("productos", this);
         //Simula el cosumo de un SERVICIOS
-        var productosData = [
+        this.productosData = [
           {
             image: sap.ui.require.toUrl(
               "curso/frontend/resources/image/prod_1_laptop.jpg"
@@ -47,17 +47,37 @@ sap.ui.define(
             id: "prod_3",
           },
         ];
+        this.createContent();
+      },
+      createContent: function () {
+        var reference = this.reference["productos"];
+        var modelColumn = reference.getOwnerComponent().getModel("columnData");
+        if (modelColumn === undefined) {
+          reference
+            .getOwnerComponent()
+            .setModel(new JSONModel({}), "columnData");
+        }
 
-        this.getOwnerComponent().setModel(new JSONModel({}), "columnData");
-
-        var modelProductos = new JSONModel(productosData);
-        this.getOwnerComponent().setModel(modelProductos, "mProductos");
+        var modelProductos = new JSONModel(that.productosData);
+        reference.getOwnerComponent().setModel(modelProductos, "mProductos");
 
         //CREACION DINAMICA DE PRODUCTOS
         // HBOX CONTENEDOR PRODUCTOS
-        var contenedorProductos = oView.byId("h_contenedorProductos");
+        var contenedorProductos = reference
+          .getView()
+          .byId("h_contenedorProductos");
         console.log(contenedorProductos);
-        this.rederizarProducto(contenedorProductos, productosData);
+        contenedorProductos.destroyItems();
+        reference.rederizarProducto(contenedorProductos, that.productosData);
+      },
+      updateProductsData: function (id, updateObject) {
+        var reference = this.reference["productos"];
+        reference.productosData.forEach((prod, index) => {
+          if (prod.id === id) {
+            that.productosData[index] = updateObject;
+          }
+        });
+        reference.createContent();
       },
       rederizarProducto: function (contenedor, arrProductos, callBack) {
         // Interar en el arreglo de datos

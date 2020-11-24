@@ -1,0 +1,43 @@
+<mvc:View controllerName="curso.frontend.controller.nested.Mantenimiento"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <Panel headerText="Lista de Productos">
+        <Table id="tb_prod_mantenimiento" items="{path: 'mProductos>/'}">
+            <headerToolbar>
+                <Toolbar>
+                    <SearchField placeholder="Buscar Pedido" width ="250px" change="onBuscarProducto" />
+                </Toolbar>
+            </headerToolbar>
+            <columns>
+                <Column>
+                    <Text text="Producto"/>
+                </Column>
+                <Column>
+                    <Text text="Marca"/>
+                </Column>
+                <Column>
+                    <Text text="Precio"/>
+                </Column>
+                <Column>
+                    <Text text="Stock"/>
+                </Column>
+                <Column>
+                    <Text text="Acciones"/>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{mProductos>titulo}" />
+                        <Text text="{mProductos>marca}" />
+                        <Text text="{mProductos>precio}" />
+                        <Text text="{mProductos>stock}" />
+                        <Button text="Editar" press="onEditarProd" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Panel>
+</mvc:View>

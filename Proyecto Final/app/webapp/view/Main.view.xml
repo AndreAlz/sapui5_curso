@@ -16,7 +16,9 @@
                 <IconTabFilter text="Dashboard" icon="sap-icon://bbyd-dashboard">
                     <mvc:XMLView viewName="curso.frontend.view.nested.Dashboard"/>
                 </IconTabFilter>
-                <IconTabFilter text="Mantenimiento" icon="sap-icon://retail-store"/>
+                <IconTabFilter text="Mantenimiento" icon="sap-icon://retail-store">
+                    <mvc:XMLView viewName="curso.frontend.view.nested.Mantenimiento"/>
+                </IconTabFilter>
             </items>
         </IconTabBar>
     </Page>

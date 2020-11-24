@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m"
     xmlns:core="sap.ui.core">
-    <Dialog id="dialogTexto" title="Fragmento">
+    <Dialog id="dialogTexto" title="Fragmento - {mDatos>/datos}">
         <content>
             <VBox width="100%">
                 <VBox class="sapUiSmallMargin" width="80%">
